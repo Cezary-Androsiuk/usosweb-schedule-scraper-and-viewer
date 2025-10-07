@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>{{ current_week_range }}</h1>
+
+    <div>
+        <a href="?schedule_date={{ previous_week }}" class="button">
+            Previous Week
+        </a>
+
+        <a href="?schedule_date={{ next_week }}" class="button">
+            Next Week
+        </a>
+    </div>
+    <br>
+    <img src="{{ url_for('static', filename=image_path) }}" alt="{{ current_week }}">
+{% endblock %}

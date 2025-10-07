@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona Główna</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            text-align: center; 
+            margin-top: 50px; 
+            color: #f9f9f9;
+            background-color: #020202;
+        }
+        img { 
+            /* max-width: 500px;  */
+            width: 50%;
+            height: auto; 
+            border-radius: 10px; 
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-left: 40px;
+            margin-right: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            color: #f9f9f9;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .error-title {
+            color: #be4747
+        }
+    </style>
+</head>
+<body>
+
+    <main class="content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
