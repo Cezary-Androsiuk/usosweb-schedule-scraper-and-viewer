@@ -16,7 +16,7 @@ def __add_days(date_str: str, days: int) -> str:
     return new_date.strftime('%Y-%m-%d')
 
 
-
+# validate date
 def to_week_date(date_str: str) -> str:
     date = datetime.strptime(date_str, "%Y-%m-%d")
     week_day = date.weekday()

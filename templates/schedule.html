@@ -2,6 +2,55 @@
 
 
 {% block content %}
+    <style>
+        img { 
+            /* max-width: 500px;  */
+            width: 50%;
+            height: auto; 
+            border-radius: 10px; 
+        }
+        #infoContainer{
+            color: #acacac;
+            text-align: left;
+            margin-left: 10%;
+            border-radius: 10px; 
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('infoContainer')
+            container.innerHTML = `<span>Loading...</span>`
+            const eventSource = new EventSource('/stream-data/{{ current_week }}')
+            
+            eventSource.onmessage = function(event){
+                const data = JSON.parse(event.data);
+                if(data.type === 'message'){
+                    container.innerHTML = container.innerHTML + `<br> <span>${data.payload}</span>`
+                }
+                else if(data.type === 'link'){
+                    const img = document.createElement('img');
+                    img.src = data.payload
+                    img.alt = '{{ current_week }}'
+                    container.innerHTML = "";
+                    container.replaceWith(img)
+                    eventSource.close()
+                }
+                else if(data.type === 'error'){
+                    console.log('error data:', data)
+
+                    container.innerHTML = container.innerHTML + `<br> <strong style="color: #e2706c;">Error: ${data.payload}</strong>`
+                    eventSource.close()
+                }
+            }
+
+            eventSource.onerror = function(event){
+                console.log('error')
+                container.innerHTML = container.innerHTML + `<br> <strong style="color: #e2706c;">Internal server error</strong>`
+                eventSource.close()
+            }
+        })
+    </script>
+
     <h1>{{ current_week_range }}</h1>
 
     <div>
@@ -9,10 +58,17 @@
             Previous Week
         </a>
 
+        <a href="/" class="button">
+            Current Week
+        </a>
+
         <a href="?schedule_date={{ next_week }}" class="button">
             Next Week
         </a>
     </div>
     <br>
-    <img src="{{ url_for('static', filename=image_path) }}" alt="{{ current_week }}">
+    <div id="infoContainer">
+        Loading...
+        <!-- <img src="" alt="{{ current_week }}"> -->
+    </div>
 {% endblock %}
