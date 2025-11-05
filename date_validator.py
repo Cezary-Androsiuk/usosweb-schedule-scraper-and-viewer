@@ -18,7 +18,10 @@ def __add_days(date_str: str, days: int) -> str:
 
 # validate date
 def to_week_date(date_str: str) -> str:
-    date = datetime.strptime(date_str, "%Y-%m-%d")
+    try:
+        date = datetime.strptime(date_str, "%Y-%m-%d")
+    except Exception as e:
+        raise Exception("Invalid date! Details: " + str(e))
     week_day = date.weekday()
     monday = date - timedelta(days=week_day)
     return monday.strftime("%Y-%m-%d")
