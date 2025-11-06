@@ -23,5 +23,8 @@ To run the program, you must set the following two environment variables on the 
 ### Loaded schedule
 ![Loaded schedule](https://github.com/Cezary-Androsiuk/uwb-schedule-scraper-and-viewer/blob/master/screenshots/loaded_schedule.png "Loaded schedule") 
 
+### Error while loading
+![Error while loading](https://github.com/Cezary-Androsiuk/uwb-schedule-scraper-and-viewer/blob/master/screenshots/loading_error.png "Error while loading") 
+
 ### Error with invalid url
 ![Error with invalid url](https://github.com/Cezary-Androsiuk/uwb-schedule-scraper-and-viewer/blob/master/screenshots/error_with_invalid_url.png "Error with invalid url") 
