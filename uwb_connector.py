@@ -219,5 +219,6 @@ def download_schedule_safe(schedule_date):
         yield from download_schedule(schedule_date=schedule_date)
     except Exception as e:
         # send message about what failed - that ends connection with javascirpt
+        print(e)
         message = {'type': 'error', 'payload': str(e)}
         yield f'data: {json.dumps(message)}\n\n'
