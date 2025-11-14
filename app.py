@@ -12,11 +12,13 @@ def root():
     
     # read "GET" variable
     schedule_date = request.args.get('schedule_date')
+    current_week = None
+    todays_week_str = todays_week()
     try:
 
         if not schedule_date:
             # if is None, then use todays week
-            current_week = todays_week();
+            current_week = todays_week_str
             return redirect(url_for('root', schedule_date=current_week))
         else:
             # if date is specified, then use it, but first parse it
@@ -26,15 +28,17 @@ def root():
         return redirect(url_for('error', error_info=e))
     
     # create values for the page
-    next_week = week_forward(current_week)
     previous_week = week_backwards(current_week)
+    next_week = week_forward(current_week)
     current_week_range = week_range(current_week)
+    todays_week_range = week_range(todays_week_str)
     
     return render_template(
         'schedule.html', 
         previous_week=previous_week,
         current_week=current_week, 
         current_week_range=current_week_range,
+        todays_week_range=todays_week_range,
         next_week=next_week)
     
 
